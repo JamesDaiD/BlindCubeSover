@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BlindfoldedCube</string>
+    <string name="solutionTV">Input a scramble and hit "Solve Scramble"</string>
+    <string name="scrambleTV">Please input a scramble</string>
+    <string name="solveBtn">Solve scramble</string>
+    <string name="generateBtn">Random Scramble</string>
+    <string name="saveSoveBtn">Save Solve</string>
+    <string name="openDBBtn">Open Database</string>
+    <string name="ttsBtn">Text To Speech</string>
+    <string name="U">U</string>
+    <string name="D">D</string>
+    <string name="R">R</string>
+    <string name="L">L</string>
+    <string name="F">F</string>
+    <string name="B">B</string>
+    <string name="UPrime">U\'</string>
+    <string name="DPrime">D\'</string>
+    <string name="RPrime">R\'</string>
+    <string name="LPrime">L\'</string>
+    <string name="FPrime">F\'</string>
+    <string name="BPrime">B\'</string>
+    <string name="cubeEditInstructions">Choose a color then paint the stickers</string>
+    <string name="editCube">Edit Cube</string>
+    <string name="random">Random</string>
+    <string name="reset">Reset</string>
+    <string name="applyScramble">Apply Scramble</string>
+</resources>

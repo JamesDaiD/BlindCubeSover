@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/stickerLL"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:background="@color/black"
+    android:orientation="horizontal"
+    android:outlineAmbientShadowColor="@android:color/transparent"
+    android:outlineSpotShadowColor="@android:color/transparent">
+
+    <Button
+        android:id="@+id/stickerButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:outlineAmbientShadowColor="@android:color/transparent"
+        android:outlineSpotShadowColor="@android:color/transparent"
+        android:text="@string/app_name"
+        android:textColor="@android:color/transparent"
+        android:textSize="12sp"
+        app:cornerRadius="0dp" />
+</LinearLayout>
