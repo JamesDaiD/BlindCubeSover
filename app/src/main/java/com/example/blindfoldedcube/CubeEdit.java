@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.example.blindfoldedcube.CubeDataStructure.Tools;
 import com.example.blindfoldedcube.CubeVisualization.CubeGrid2DAdapter;
 import com.example.blindfoldedcube.CubeVisualization.CubeMoves;
 
@@ -145,6 +146,11 @@ public class CubeEdit extends AppCompatActivity {
 
         applyScrambleBtn.setOnClickListener(view -> {
             currentCubeState = Utilities.scrambleToFaceCube(scrambleToCubeET.getText().toString());
+            updateCubeGrid();
+        });
+
+        randomCubeBtn.setOnClickListener(view -> {
+            currentCubeState = Tools.randomCube();
             updateCubeGrid();
         });
     }

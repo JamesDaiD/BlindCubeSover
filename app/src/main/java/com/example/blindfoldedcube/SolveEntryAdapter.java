@@ -15,9 +15,15 @@ import java.util.List;
 public class SolveEntryAdapter extends RecyclerView.Adapter<SolveEntryAdapter.ViewHolder> {
 
     List<SolveEntry> SolveEntries;
+    private RecyclerViewClickListener listener;
 
     public SolveEntryAdapter(List<SolveEntry> SolveEntries) {
         this.SolveEntries = SolveEntries;
+    }
+
+    public SolveEntryAdapter(List<SolveEntry> SolveEntries, RecyclerViewClickListener listener) {
+        this.SolveEntries = SolveEntries;
+        this.listener = listener;
     }
 
     @Override
@@ -40,7 +46,7 @@ public class SolveEntryAdapter extends RecyclerView.Adapter<SolveEntryAdapter.Vi
         else return 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView scrambleTV;
         public TextView solutionTV;
 
@@ -48,6 +54,17 @@ public class SolveEntryAdapter extends RecyclerView.Adapter<SolveEntryAdapter.Vi
             super(itemView);
             scrambleTV = itemView.findViewById(R.id.scrambleTVRec);
             solutionTV = itemView.findViewById(R.id.solutionTVRec);
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view, getAdapterPosition());
+        }
+    }
+
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
     }
 }
