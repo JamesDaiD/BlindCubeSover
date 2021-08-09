@@ -17,7 +17,7 @@ public class LandingActivity extends AppCompatActivity {
 
     List<Integer> pageImg = new ArrayList<>(Arrays.asList(R.drawable.rubik,R.drawable.rubik_move,
             R.drawable.server,R.drawable.guidebook));
-    List<String> pageName =new ArrayList<>(Arrays.asList("Solves","Edit Cube","Database",
+    List<String> pageName =new ArrayList<>(Arrays.asList("Solve","Edit Cube","Database",
             "Tutorial"));
 
 
@@ -32,28 +32,23 @@ public class LandingActivity extends AppCompatActivity {
         gridViewImages.setVerticalSpacing(40);
         gridViewImages.setNumColumns(2);
 
-        gridViewImages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch(position){
-                    case 0:
-                        startActivity(new Intent(LandingActivity.this, MainActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(LandingActivity.this, CubeEdit.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(LandingActivity.this, SolveDBViewer.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(LandingActivity.this, ScrambleListViewer.class));
-                        break;
-                    default:
-                        Toast.makeText(LandingActivity.this, "Yo, something is wrong", Toast.LENGTH_SHORT).show();
-                }}
-
-
-        });
+        gridViewImages.setOnItemClickListener((parent, view, position, id) -> {
+            switch(position){
+                case 0:
+                    startActivity(new Intent(LandingActivity.this, MainActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(LandingActivity.this, CubeEdit.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(LandingActivity.this, SolveDBViewer.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(LandingActivity.this, ScrambleListViewer.class));
+                    break;
+                default:
+                    Toast.makeText(LandingActivity.this, "Yo, something is wrong", Toast.LENGTH_SHORT).show();
+            }});
 
     }
     

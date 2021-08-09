@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import com.example.blindfoldedcube.R;
 import com.example.blindfoldedcube.Utilities;
 
-
-
 public class CubeGrid2DAdapter extends BaseAdapter {
     public final String solvedCube = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB";
     String faceCube;

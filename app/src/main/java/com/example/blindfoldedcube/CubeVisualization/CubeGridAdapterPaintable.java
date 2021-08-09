@@ -61,26 +61,32 @@ public class CubeGridAdapterPaintable extends BaseAdapter {
         switch (faceCube.charAt(i))
         {
             case 'U':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.WHITE);
                 aButton.setText("U");
                 break;
             case 'D':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.YELLOW);
                 aButton.setText("D");
                 break;
             case 'R':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.RED);
                 aButton.setText("R");
                 break;
             case 'L':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.rgb(255, 165, 0)); //ORANGE
                 aButton.setText("L");
                 break;
             case 'F':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.GREEN);
                 aButton.setText("F");
                 break;
             case 'B':
+                aButton.setClickable(true);
                 aButton.setBackgroundColor(Color.BLUE);
                 aButton.setText("B");
                 break;

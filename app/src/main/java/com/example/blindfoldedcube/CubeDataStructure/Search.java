@@ -146,11 +146,11 @@ public class Search {
 			for (int i = 0; i < 54; i++)
 				count[Color.valueOf(facelets.substring(i, i + 1)).ordinal()]++;
 		} catch (Exception e) {
-			return "Error 1";
+			return "Error 1: There is not exactly one facelet of each colour";
 		}
 		for (int i = 0; i < 6; i++)
 			if (count[i] != 9)
-				return "Error 1";
+				return "Error 1: There is not exactly one facelet of each colour";
 
 		FaceCube fc = new FaceCube(facelets);
 		CubieCube cc = fc.toCubieCube();
@@ -193,11 +193,11 @@ public class Search {
 						if (++ax[n] > 5) {
 
 							if (System.currentTimeMillis() - tStart > timeOut << 10)
-								return "Error 8";
+								return "Error 8: Timeout, no solution within given time";
 
 							if (n == 0) {
 								if (depthPhase1 >= maxDepth)
-									return "Error 7";
+									return "Error 7: No solution exists for the given maxDepth";
 								else {
 									depthPhase1++;
 									ax[n] = 0;

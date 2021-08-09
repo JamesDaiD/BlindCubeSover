@@ -24,4 +24,9 @@
     <string name="random">Random</string>
     <string name="reset">Reset To Solved</string>
     <string name="applyScramble">Apply Scramble</string>
+    <string name="landingTitle">Solve your cube!</string>
+    <string name="solvesDBBtn">Solves Database</string>
+    <string name="scramblesDBBtn">Scrambles List</string>
+    <string name="algDBBtn">Algorithms List</string>
+    <string name="applyMoves">Apply Moves</string>
 </resources>

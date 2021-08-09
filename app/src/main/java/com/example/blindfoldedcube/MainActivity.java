@@ -27,10 +27,14 @@ import com.example.blindfoldedcube.MyCubeDatabase.SolveEntry;
 
 import java.lang.ref.WeakReference;
 import java.util.Locale;
+import java.util.Timer;
+
+import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
     private TextToSpeech mTTS;
-//    TextView scrambleTV;
+    boolean speaking = false;
+
     TextView solutionTV;
     Button solveButton;
     Button saveSolveBtn;
@@ -52,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
 
 //        scrambleTV = findViewById(R.id.scrambleText);
         solutionTV = findViewById(R.id.solutionText);
-        solveButton = findViewById(R.id.solveBtn);
+        moveBtn = findViewById(R.id.editCubeBtn);
         saveSolveBtn = findViewById(R.id.saveSolveBtn);
         openDBBtn = findViewById(R.id.openDBButton);
         ttsBtn = findViewById(R.id.ttsBtn);
         ttsSpeedSB = findViewById(R.id.speedSB);
-        moveBtn = findViewById(R.id.editCubeBtn);
+        solveButton = findViewById(R.id.solveBtn);
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -138,32 +142,45 @@ public class MainActivity extends AppCompatActivity {
 
         //Start TTS
         ttsBtn.setOnClickListener(view -> {
-            if (!mTTS.isSpeaking()) {
+
+
+            if (!mTTS.isSpeaking() && !speaking) {
                 String textToRead = solutionTV.getText().toString();
                 textToRead = Utilities.prepareStringforTTS(textToRead);
-
-                mTTS.setPitch(0.9f);
-                float speed = (float) ttsSpeedSB.getProgress() / 100;
-                mTTS.setSpeechRate(speed);
-                mTTS.speak(textToRead, TextToSpeech.QUEUE_FLUSH, null, null); //TODO: check other params
-                String[] moves = textToRead.split("... \n");
-                startChronometer();
+                String[] movesArray = textToRead.split("... \n");
                 ttsBtn.setText("Reading. Click to stop");
-//            TODO: update TTS
-//            for
+                Thread background = new Thread(() -> {
+                    try {
+                        speaking = true;
+                        for (int i = 0; i < movesArray.length; i++) {
+                            mTTS.setPitch(0.9f);
+                            float speed = (float) ttsSpeedSB.getProgress() / 100;
+                            mTTS.setSpeechRate(speed);
+                            mTTS.speak(movesArray[i], TextToSpeech.QUEUE_FLUSH, null, null); //TODO: check other params
+                            sleep(2300 - (ttsSpeedSB.getProgress() * 10));
+                        }
+
+                        ttsBtn.setText("Text to speech");
+                    } catch (Exception e) {
+                    }
+                });
+            // start thread
+            background.start();
+
+//            startChronometer();
             }
             else
             {
                 mTTS.stop();
-                stopChronometer();
+                speaking = false;
+//                stopChronometer();
                 ttsBtn.setText("Text to speech");
             }
-            ttsBtn.setText("Text to speech");
         });
 
         //open activity to edit cube state
         moveBtn.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, ScrambleListViewer.class));
+            startActivity(new Intent(MainActivity.this, CubeEdit.class));
         });
     }
 

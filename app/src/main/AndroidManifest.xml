@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlindfoldedCubeDark">
         <activity
+            android:name=".DBSelection"
+            android:exported="true" />
+        <activity
             android:name=".LandingActivity"
             android:exported="true">
             <intent-filter>
@@ -24,9 +27,11 @@
         <activity android:name=".SavedSolveView" />
         <activity android:name=".CubeEdit" />
         <activity android:name=".SolveDBViewer" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
 
-        </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

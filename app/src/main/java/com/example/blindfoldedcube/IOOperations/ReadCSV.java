@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+//Moved to CubeEdit
+//TODO: make globally available
 public class ReadCSV {
 //    public static List<String[]> readScramblesFromCSV()
 //    {

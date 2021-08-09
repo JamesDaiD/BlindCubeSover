@@ -4,16 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.example.blindfoldedcube.CubeDataStructure.Scramble;
 import com.example.blindfoldedcube.CubeDataStructure.Tools;
 import com.example.blindfoldedcube.CubeVisualization.CubeGrid2DAdapter;
 import com.example.blindfoldedcube.CubeVisualization.CubeGridAdapterPaintable;
 import com.example.blindfoldedcube.CubeVisualization.CubeMoves;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 
 public class CubeEdit extends AppCompatActivity {
 
@@ -167,7 +180,12 @@ public class CubeEdit extends AppCompatActivity {
         });
 
         randomCubeBtn.setOnClickListener(view -> {
-            currentCubeState = Tools.randomCube();
+            List<Scramble> scramblesList = ScrambleParser();
+            Random rand = new Random();
+            String randomScrMoves = scramblesList.get(rand.nextInt(scramblesList.size())).getScramble();
+//            currentCubeState = Tools.randomCube();
+            scrambleToCubeET.setText(randomScrMoves);
+            currentCubeState = Utilities.scrambleMovesToFaceCube(scrambleToCubeET.getText().toString());
             updateCubeGrid();
         });
 
@@ -193,6 +211,21 @@ public class CubeEdit extends AppCompatActivity {
 
         blueBtn.setOnClickListener(view -> {
             selectedColor = "B";
+//            Log.d("StickerColor", "B");
+        });
+
+
+        //TODO:not working due to performance issues. Not all buttons are given an onClickListener
+        gridViewCube.setOnItemClickListener((adapterView, view, i, l) -> {
+            Button clickedSticker = view.findViewById(R.id.stickerButton);
+            String stickerState = clickedSticker.getText().toString();
+            Log.d("StickerState", "Something " + stickerState + i);
+            if (stickerState != " ")
+            {
+                clickedSticker.setText(selectedColor);
+                clickedSticker.setBackgroundColor(Color.RED);
+            }
+//            updateCubeGrid();
         });
     }
 
@@ -227,4 +260,60 @@ public class CubeEdit extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Cube", Context.MODE_PRIVATE);
         currentCubeState = sharedPreferences.getString("cubeState", "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB");
     }
+
+    /*get Data from CSV file*/
+    private List<String[]> ReadCSV()
+    {
+        List<String[]> dataList = new ArrayList<>();
+
+        //populate the list
+        InputStream inputStream = getResources().openRawResource(R.raw.scrambles);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        try
+        {
+            String csvLine;
+            while ((csvLine = reader.readLine()) != null)
+            {
+                String[] dataInfo = csvLine.split(","); //breakdown line into array
+                dataList.add(dataInfo); //add data to list
+            }
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException("Error reading CSV File " + ex.getMessage());
+        }
+        finally {
+            try {
+                inputStream.close();
+            }
+            catch (IOException ex)
+            {
+                throw new RuntimeException("Error closing CSV File " + ex.getMessage());
+            }
+        }
+        return dataList;
+    }
+
+    /*used to parse scramble from DB*/
+    public List<Scramble> ScrambleParser()
+    {
+        List<String[]> dataFromFile = ReadCSV(); //get data from CSV file
+
+        List<Scramble> scrambleList = new ArrayList<>(); //holds scramble objects
+
+        /*loop through data and creates objects*/
+        for (int i = 0; i < dataFromFile.size(); i++)
+        {
+
+            /*creates scramble object*/
+            Scramble aScramble = new Scramble
+                    (
+                            Integer.parseInt(dataFromFile.get(i)[0]), //scramble no
+                            dataFromFile.get(i)[1] //actual scramble
+                    );
+            scrambleList.add(aScramble); //add object to list
+        }
+        return scrambleList;
+    } //ends scrambleParser
 }
