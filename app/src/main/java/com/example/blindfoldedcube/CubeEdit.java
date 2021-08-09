@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.blindfoldedcube.CubeDataStructure.Scramble;
 import com.example.blindfoldedcube.CubeDataStructure.Tools;
@@ -57,7 +58,7 @@ public class CubeEdit extends AppCompatActivity {
     Button blueBtn;
     Button greenBtn;
 
-    String selectedColor = " ";
+    char selectedColor = 'R';
 
     EditText scrambleToCubeET;
 
@@ -190,40 +191,63 @@ public class CubeEdit extends AppCompatActivity {
         });
 
         redBtn.setOnClickListener(view -> {
-            selectedColor = "R";
+            selectedColor = 'R';
         });
 
         orangeBtn.setOnClickListener(view -> {
-            selectedColor = "L";
+            selectedColor = 'L';
         });
 
         whiteBtn.setOnClickListener(view -> {
-            selectedColor = "U";
+            selectedColor = 'U';
         });
 
         yellowBtn.setOnClickListener(view -> {
-            selectedColor = "D";
+            selectedColor = 'D';
         });
 
         greenBtn.setOnClickListener(view -> {
-            selectedColor = "F";
+            selectedColor = 'F';
         });
 
         blueBtn.setOnClickListener(view -> {
-            selectedColor = "B";
+            selectedColor = 'B';
 //            Log.d("StickerColor", "B");
         });
 
 
-        //TODO:not working due to performance issues. Not all buttons are given an onClickListener
         gridViewCube.setOnItemClickListener((adapterView, view, i, l) -> {
-            Button clickedSticker = view.findViewById(R.id.stickerButton);
-            String stickerState = clickedSticker.getText().toString();
+            TextView clickedSticker = view.findViewById(R.id.textView);
+            char stickerState = clickedSticker.getText().toString().charAt(0);
             Log.d("StickerState", "Something " + stickerState + i);
-            if (stickerState != " ")
+            if (stickerState != ' ' && stickerState != '*')
             {
-                clickedSticker.setText(selectedColor);
-                clickedSticker.setBackgroundColor(Color.RED);
+                clickedSticker.setText(selectedColor + "");
+                char[] tempChar = currentCubeState.toCharArray();
+                tempChar[Utilities.getLocationInCubeString(i)] = selectedColor;
+                currentCubeState = String.valueOf(tempChar);
+                switch (selectedColor) {
+                    case 'U':
+                        clickedSticker.setBackgroundColor(Color.WHITE);
+                        break;
+                    case 'D':
+                        clickedSticker.setBackgroundColor(Color.YELLOW);
+                        break;
+                    case 'R':
+                        clickedSticker.setBackgroundColor(Color.RED);
+                        break;
+                    case 'L':
+                        clickedSticker.setBackgroundColor(Color.rgb(255, 165, 0)); //ORANGE
+                        break;
+                    case 'F':
+                        clickedSticker.setBackgroundColor(Color.GREEN);
+                        break;
+                    case 'B':
+                        clickedSticker.setBackgroundColor(Color.BLUE);
+                        break;
+                    default:
+                        break;
+                }
             }
 //            updateCubeGrid();
         });

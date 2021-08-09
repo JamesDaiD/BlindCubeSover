@@ -182,6 +182,20 @@ public class Utilities {
         return result;
     }
 
+    public static int getLocationInCubeString(int gridLocation)
+    {
+        if (gridLocation >=3 && gridLocation <= 5)
+            return gridLocation - 3;
+        else if(gridLocation >= 14 && gridLocation <=17)
+            return gridLocation -12;
+        else if(gridLocation >= 26 && gridLocation <= 29)
+            return gridLocation -21;
+        else if(gridLocation >= 36 && gridLocation <=38)
+            return gridLocation;
+        //TODO: finish conversions
+        else
+            return 0;
+    }
 
     //Turn string of scramble into an array of strings, each containing one move
     public static String[] movesStringToArray(String scramble)

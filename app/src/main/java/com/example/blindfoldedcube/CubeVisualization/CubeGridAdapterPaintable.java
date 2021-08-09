@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.blindfoldedcube.R;
 import com.example.blindfoldedcube.Utilities;
@@ -52,48 +53,43 @@ public class CubeGridAdapterPaintable extends BaseAdapter {
 
         if (view == null) {
             LayoutInflater _inflater = LayoutInflater.from(viewGroup.getContext());
-            view = _inflater.inflate(R.layout.grid_sticker, viewGroup, false);
+            view = _inflater.inflate(R.layout.grid_sticker_paintable, viewGroup, false);
         }
 
-        Button aButton = view.findViewById(R.id.stickerButton);
+        TextView aTextView = view.findViewById(R.id.textView);
         LinearLayout aLayout = view.findViewById(R.id.stickerLL);
 
         switch (faceCube.charAt(i))
         {
             case 'U':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.WHITE);
-                aButton.setText("U");
+                aTextView.setBackgroundColor(Color.WHITE);
+                aTextView.setText("U");
                 break;
             case 'D':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.YELLOW);
-                aButton.setText("D");
+                aTextView.setBackgroundColor(Color.YELLOW);
+                aTextView.setText("D");
                 break;
             case 'R':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.RED);
-                aButton.setText("R");
+                aTextView.setBackgroundColor(Color.RED);
+                aTextView.setText("R");
                 break;
             case 'L':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.rgb(255, 165, 0)); //ORANGE
-                aButton.setText("L");
+                aTextView.setBackgroundColor(Color.rgb(255, 165, 0)); //ORANGE
+                aTextView.setText("L");
                 break;
             case 'F':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.GREEN);
-                aButton.setText("F");
+                aTextView.setBackgroundColor(Color.GREEN);
+                aTextView.setText("F");
                 break;
             case 'B':
-                aButton.setClickable(true);
-                aButton.setBackgroundColor(Color.BLUE);
-                aButton.setText("B");
+                aTextView.setBackgroundColor(Color.BLUE);
+                aTextView.setText("B");
                 break;
             case '*':
-                aButton.setBackgroundColor(Color.TRANSPARENT);
+
+                aTextView.setBackgroundColor(Color.TRANSPARENT);
                 aLayout.setBackgroundColor(Color.TRANSPARENT);
-                aButton.setText(" ");
+                aTextView.setText(" ");
                 break;
             default:
                 break;

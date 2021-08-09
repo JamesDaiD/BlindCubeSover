@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech mTTS;
     boolean speaking = false;
 
+    private int seconds = 0;
+
+    private boolean running;
+    private boolean wasRunning;
+
     TextView solutionTV;
     Button solveButton;
     Button saveSolveBtn;
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     SeekBar ttsSpeedSB;
     GridView gridViewCube;
     ProgressBar progressBar;
-    Chronometer chronometer;
+//    Chronometer chronometer;
 
     String currentCubeState = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB";
     boolean chronometerRunning = false;
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar);
 
-        chronometer = findViewById(R.id.chronometer);
+
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "MyCubeDB")
                 .allowMainThreadQueries() //allow DB to read and write on main UI thread. Not suitable for the real world
@@ -103,20 +109,6 @@ public class MainActivity extends AppCompatActivity {
         },  "com.google.android.tts"); //attempt to use Google speech engine if available.
                                             // Can use "com.samsung.SMT" for samsung engine
 
-        //**************************************************************************************//
-        //Chronometer for stop watch
-        chronometer.setFormat("%s");
-        chronometer.setBase(SystemClock.elapsedRealtime());
-        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 10000) {
-                    chronometer.setBase(SystemClock.elapsedRealtime());
-                    Toast.makeText(MainActivity.this, "Bing!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        //**************************************************************************************//
 
         //Listeners
 
@@ -139,12 +131,13 @@ public class MainActivity extends AppCompatActivity {
             db.solveDao().insertAll((new SolveEntry(scramble, solution)));
             Toast.makeText(this, "Solve saved to Database", Toast.LENGTH_SHORT).show();
         });
-
+        runTimer();
         //Start TTS
         ttsBtn.setOnClickListener(view -> {
 
-
             if (!mTTS.isSpeaking() && !speaking) {
+                seconds = 0;
+                running = true;
                 String textToRead = solutionTV.getText().toString();
                 textToRead = Utilities.prepareStringforTTS(textToRead);
                 String[] movesArray = textToRead.split("... \n");
@@ -161,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         ttsBtn.setText("Text to speech");
+                        running = false;
                     } catch (Exception e) {
                     }
                 });
@@ -171,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                running = false;
                 mTTS.stop();
                 speaking = false;
 //                stopChronometer();
@@ -262,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             }
             String cube = currentCubeState;
             Log.d("scrambletosolve", currentCubeState);
-            result = Search.solution(cube, 25, 5L, false);
+            result = Search.solution(cube, 29, 6L, false);
             return "Success";
         }
 
@@ -297,28 +292,34 @@ public class MainActivity extends AppCompatActivity {
         currentCubeState = sharedPreferences.getString("cubeState", "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB");
     }
 
-    public void startChronometer() {
-        if (!chronometerRunning) {
-            chronometer.setBase(SystemClock.elapsedRealtime());
-            chronometer.start();
-            chronometerRunning = true;
-        }
+    private void runTimer(){
+        final TextView timeField = findViewById(R.id.timeField);
+        final Handler handler = new Handler();
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                int hours = seconds/36000;
+                int minutes = (seconds % 3600)/60;
+                int sec = seconds % 60;
+
+                String time = String.format(Locale.getDefault(), "%d:%02d:%2d", hours, minutes, sec);
+                timeField.setText(time);
+
+                if (running){
+                    seconds++;
+                }
+                handler.postDelayed(this,1000);
+            }
+        });
     }
 
-    public void stopChronometer() {
-        if (chronometerRunning) {
-            chronometer.stop();
-            chronometerRunning = false;
-//            chronometer.setBase(SystemClock.elapsedRealtime());
-        }
-    }
-
-    class BackgroundThread extends Thread {
-        @Override
-        public void run() {
-            super.run();
-        }
-    }
+//    class BackgroundThread extends Thread {
+//        @Override
+//        public void run() {
+//            super.run();
+//        }
+//    }
 
 
 

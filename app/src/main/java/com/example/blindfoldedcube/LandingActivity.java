@@ -41,10 +41,10 @@ public class LandingActivity extends AppCompatActivity {
                     startActivity(new Intent(LandingActivity.this, CubeEdit.class));
                     break;
                 case 2:
-                    startActivity(new Intent(LandingActivity.this, SolveDBViewer.class));
+                    startActivity(new Intent(LandingActivity.this, DBSelection.class));
                     break;
                 case 3:
-                    startActivity(new Intent(LandingActivity.this, ScrambleListViewer.class));
+                    Toast.makeText(LandingActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     Toast.makeText(LandingActivity.this, "Yo, something is wrong", Toast.LENGTH_SHORT).show();
