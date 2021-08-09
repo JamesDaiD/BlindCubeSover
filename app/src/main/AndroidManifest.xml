@@ -10,17 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BlindfoldedCubeDark">
         <activity
+            android:name=".LandingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ScrambleListViewer"
             android:exported="true" />
         <activity android:name=".SavedSolveView" />
         <activity android:name=".CubeEdit" />
         <activity android:name=".SolveDBViewer" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

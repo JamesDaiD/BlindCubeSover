@@ -12,6 +12,7 @@ import android.widget.GridView;
 
 import com.example.blindfoldedcube.CubeDataStructure.Tools;
 import com.example.blindfoldedcube.CubeVisualization.CubeGrid2DAdapter;
+import com.example.blindfoldedcube.CubeVisualization.CubeGridAdapterPaintable;
 import com.example.blindfoldedcube.CubeVisualization.CubeMoves;
 
 public class CubeEdit extends AppCompatActivity {
@@ -36,6 +37,15 @@ public class CubeEdit extends AppCompatActivity {
     Button randomCubeBtn;
     Button applyScrambleBtn;
 
+    Button redBtn;
+    Button orangeBtn;
+    Button whiteBtn;
+    Button yellowBtn;
+    Button blueBtn;
+    Button greenBtn;
+
+    String selectedColor = " ";
+
     EditText scrambleToCubeET;
 
     @Override
@@ -52,7 +62,7 @@ public class CubeEdit extends AppCompatActivity {
         gridViewCube = findViewById(R.id.cubeGridEdit);
         //Show cube
         gridViewCube.setAdapter(
-                new CubeGrid2DAdapter(currentCubeState));
+                new CubeGridAdapterPaintable(currentCubeState));
         gridViewCube.setHorizontalSpacing(0);
         gridViewCube.setVerticalSpacing(0);
         gridViewCube.setNumColumns(12);
@@ -75,6 +85,13 @@ public class CubeEdit extends AppCompatActivity {
         resetCubeBtn = findViewById(R.id.resetBtn);
         randomCubeBtn = findViewById(R.id.randomBtn);
         applyScrambleBtn = findViewById(R.id.applyScrambleBtn);
+
+        redBtn = findViewById(R.id.RedBtn);
+        orangeBtn = findViewById(R.id.OrangeBtn);
+        whiteBtn = findViewById(R.id.WhiteBtn);
+        yellowBtn = findViewById(R.id.YellowBtn);
+        blueBtn = findViewById(R.id.BlueBtn);
+        greenBtn = findViewById(R.id.GreenBtn);
 
         scrambleToCubeET = findViewById(R.id.scrambleToCubeET);
 
@@ -153,6 +170,30 @@ public class CubeEdit extends AppCompatActivity {
             currentCubeState = Tools.randomCube();
             updateCubeGrid();
         });
+
+        redBtn.setOnClickListener(view -> {
+            selectedColor = "R";
+        });
+
+        orangeBtn.setOnClickListener(view -> {
+            selectedColor = "L";
+        });
+
+        whiteBtn.setOnClickListener(view -> {
+            selectedColor = "U";
+        });
+
+        yellowBtn.setOnClickListener(view -> {
+            selectedColor = "D";
+        });
+
+        greenBtn.setOnClickListener(view -> {
+            selectedColor = "F";
+        });
+
+        blueBtn.setOnClickListener(view -> {
+            selectedColor = "B";
+        });
     }
 
     @Override
@@ -166,7 +207,7 @@ public class CubeEdit extends AppCompatActivity {
     public void updateCubeGrid()
     {
         Log.d("cubeStateEdit", currentCubeState);
-        gridViewCube.setAdapter(new CubeGrid2DAdapter(currentCubeState));
+        gridViewCube.setAdapter(new CubeGridAdapterPaintable(currentCubeState));
         gridViewCube.invalidateViews();
         saveCubeState();
     }

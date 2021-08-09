@@ -3,6 +3,7 @@ package com.example.blindfoldedcube;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
 import com.example.blindfoldedcube.CubeDataStructure.Scramble;
 
@@ -15,10 +16,19 @@ import java.util.List;
 
 public class ScrambleListViewer extends AppCompatActivity {
 
+    ListView scrambleList;
+    List<Scramble> scrambles;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scramble_list_viewer);
+        scrambleList = findViewById(R.id.scrListView);
+
+        scrambles = ScrambleParser();
+        ScrambleListAdapter scrambleAdapter = new ScrambleListAdapter(scrambles);
+        scrambleList.setAdapter(scrambleAdapter);
+
     }
 
     /*get Data from CSV file*/

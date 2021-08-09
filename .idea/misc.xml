@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_cube_edit.xml" value="0.176" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_dbviewer.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_landing.xml" value="0.24682971014492755" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_main.xml" value="0.24682971014492755" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_saved_solve_view.xml" value="0.24682971014492755" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_scramble_list_viewer.xml" value="0.15104166666666666" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/grid_sticker.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/landing_grid_model.xml" value="0.24682971014492755" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/scramble_list_model.xml" value="0.15104166666666666" />
         <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/solve_entry.xml" value="0.24682971014492755" />
       </map>

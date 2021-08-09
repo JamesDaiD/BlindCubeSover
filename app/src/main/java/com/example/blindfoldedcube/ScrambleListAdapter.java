@@ -7,21 +7,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.blindfoldedcube.CubeDataStructure.Scramble;
+
 import java.util.List;
 
 public class ScrambleListAdapter extends BaseAdapter
 {
-    List<String> scrambleText;
+    List<Scramble> scrambles;
 
-    public ScrambleListAdapter(List<String> levelName)
+    public ScrambleListAdapter(List<Scramble> scrambleList)
     {
-        this.scrambleText = levelName;
+        this.scrambles = scrambleList;
     }
 
     @Override
     public int getCount()
     {
-        return scrambleText.size();
+        return scrambles.size();
     }
 
     @Override
@@ -33,7 +35,7 @@ public class ScrambleListAdapter extends BaseAdapter
     @Override
     public Object getItem(int i)
     {
-        return scrambleText.get(i);
+        return scrambles.get(i);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class ScrambleListAdapter extends BaseAdapter
 
         /* bind text View */
         TextView txtViewLevel = view.findViewById(R.id.scrambleText);
-        txtViewLevel.setText(scrambleText.get(i));
+        txtViewLevel.setText(scrambles.get(i).getScramble());
         txtViewLevel.setGravity(Gravity.CENTER);
 
         return view;

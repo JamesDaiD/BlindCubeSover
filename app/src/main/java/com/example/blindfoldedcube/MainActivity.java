@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         //open activity to edit cube state
         moveBtn.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, CubeEdit.class));
+            startActivity(new Intent(MainActivity.this, ScrambleListViewer.class));
         });
     }
 
