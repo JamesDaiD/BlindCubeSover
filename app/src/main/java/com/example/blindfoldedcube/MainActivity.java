@@ -21,9 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.blindfoldedcube.CubeDataStructure.Search;
-import com.example.blindfoldedcube.CubeDataStructure.Tools;
 import com.example.blindfoldedcube.CubeVisualization.CubeGrid2DAdapter;
-import com.example.blindfoldedcube.CubeVisualization.CubeMoves;
 import com.example.blindfoldedcube.MyCubeDatabase.AppDatabase;
 import com.example.blindfoldedcube.MyCubeDatabase.SolveEntry;
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Open DB
         openDBBtn.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity.this, DBViewer.class));
+            startActivity(new Intent(MainActivity.this, SolveDBViewer.class));
         });
 
         //Save solve into roomDB
@@ -304,6 +302,8 @@ public class MainActivity extends AppCompatActivity {
             super.run();
         }
     }
+
+
 
 
 

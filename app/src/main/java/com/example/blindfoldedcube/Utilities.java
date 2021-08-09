@@ -105,15 +105,11 @@ public class Utilities {
 
 
     //Turn scrambles into string representation of a faceCube
-    public static String scrambleToFaceCube(String scramble) {
+    public static String scrambleMovesToFaceCube(String scramble) {
         //starts with solved cube
         String result = "UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB";
 
-        //remove brackets from scramble if needed
-        scramble = scramble.replace("(", "");
-        scramble = scramble.replace(")", "");
-
-        String[] movesToMake = scramble.split(" ");
+        String[] movesToMake = movesStringToArray(scramble);
 
         for (int i = 0; i < movesToMake.length; i++)
         {
@@ -184,5 +180,17 @@ public class Utilities {
             }
         }
         return result;
+    }
+
+
+    //Turn string of scramble into an array of strings, each containing one move
+    public static String[] movesStringToArray(String scramble)
+    {
+        //remove brackets from scramble if needed
+        scramble = scramble.replace("(", "");
+        scramble = scramble.replace(")", "");
+
+        String[] resultArray = scramble.split(" ");
+        return resultArray;
     }
 }

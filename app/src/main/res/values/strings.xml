@@ -22,6 +22,6 @@
     <string name="cubeEditInstructions">Choose a color then paint the stickers</string>
     <string name="editCube">Edit Cube</string>
     <string name="random">Random</string>
-    <string name="reset">Reset</string>
+    <string name="reset">Reset To Solved</string>
     <string name="applyScramble">Apply Scramble</string>
 </resources>

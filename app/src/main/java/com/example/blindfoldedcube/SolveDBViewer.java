@@ -14,7 +14,7 @@ import com.example.blindfoldedcube.MyCubeDatabase.SolveEntry;
 
 import java.util.List;
 
-public class DBViewer extends AppCompatActivity {
+public class SolveDBViewer extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -49,6 +49,7 @@ public class DBViewer extends AppCompatActivity {
             startActivity(intent);
         };
     }
+
 
 
 }

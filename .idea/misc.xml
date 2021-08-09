@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_cube_edit.xml" value="0.176" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_dbviewer.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_main.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_saved_solve_view.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/activity_scramble_list_viewer.xml" value="0.15104166666666666" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/grid_sticker.xml" value="0.24682971014492755" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/scramble_list_model.xml" value="0.15104166666666666" />
+        <entry key="..\:/AndroidProjects/BlindfoldedCube/app/src/main/res/layout/solve_entry.xml" value="0.24682971014492755" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

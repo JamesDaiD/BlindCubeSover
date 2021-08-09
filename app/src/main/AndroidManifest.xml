@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlindfoldedCubeDark">
-        <activity android:name=".SavedSolveView"></activity>
+        <activity
+            android:name=".ScrambleListViewer"
+            android:exported="true" />
+        <activity android:name=".SavedSolveView" />
         <activity android:name=".CubeEdit" />
-        <activity android:name=".DBViewer" />
+        <activity android:name=".SolveDBViewer" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

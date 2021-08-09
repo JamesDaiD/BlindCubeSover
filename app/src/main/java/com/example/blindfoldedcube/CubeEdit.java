@@ -145,7 +145,7 @@ public class CubeEdit extends AppCompatActivity {
         });
 
         applyScrambleBtn.setOnClickListener(view -> {
-            currentCubeState = Utilities.scrambleToFaceCube(scrambleToCubeET.getText().toString());
+            currentCubeState = Utilities.scrambleMovesToFaceCube(scrambleToCubeET.getText().toString());
             updateCubeGrid();
         });
 
